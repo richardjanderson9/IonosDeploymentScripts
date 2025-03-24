@@ -10,7 +10,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/tmp/rj-project/scripts/ServiceSetup.sh
+ExecStart=/opt/rj-project/scripts/ServiceSetup.sh
 #RemainAfterExit=yes # Remove this line
 StandardOutput=journal
 StandardError=journal
@@ -29,7 +29,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/tmp/rj-project/scripts/CustomSetup.sh
+ExecStart=/opt/rj-project/scripts/CustomSetup.sh
 #RemainAfterExit=yes  # Remove this line
 StandardOutput=journal
 StandardError=journal
@@ -41,8 +41,8 @@ WantedBy=multi-user.target
 EOF
 
 # Make the scripts executable
-sudo chmod +x /tmp/rj-project/scripts/ServiceSetup.sh
-sudo chmod +x /tmp/rj-project/scripts/CustomSetup.sh
+sudo chmod +x /opt/rj-project/scripts/ServiceSetup.sh
+sudo chmod +x /opt/rj-project/scripts/CustomSetup.sh
 
 # Reload systemd
 sudo systemctl daemon-reload
@@ -54,3 +54,8 @@ sudo systemctl enable CustomSetup.service
 # Start the services
 sudo systemctl start ServiceSetup.service
 sudo systemctl start CustomSetup.service
+
+
+## Enables SSH! ((Testing Only!!))
+sudo sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+sudo sed -i 's/^PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
