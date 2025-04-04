@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SCRIPT_NAME=$(basename "$0")
+SCRIPT_NAME_WITHOUT_EXT="${SCRIPT_NAME%.*}"
+ERROR_DIR="$1"
+OUTPUT_FILE="$ERROR_DIR/${SCRIPT_NAME_WITHOUT_EXT}.txt"
+
+echo "Hello from script ${SCRIPT_NAME}!" >> "$OUTPUT_FILE"
